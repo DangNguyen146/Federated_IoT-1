@@ -9,7 +9,7 @@ from supervised_data import get_client_supervised_initial_splitting
 from test_hparams import test_hyperparameters
 from unsupervised_data import get_client_unsupervised_initial_splitting
 
-
+#changed cuda and gamma from 0.5 to 0.4, epoch  from 4 to 8 in classifier
 def main(experiment: str, setup: str, federated: str, test: bool, collaborative: bool):
     Ctp.set_automatic_skip(True)
     Ctp.print('\n\t\t\t\t\t' + (federated.upper() + ' ' if federated is not None else '') + setup.upper() + ' ' + experiment.upper()
@@ -24,7 +24,7 @@ def main(experiment: str, setup: str, federated: str, test: bool, collaborative:
                      # This is the proportion of *train_val set* that goes into the validation set, not the proportion of all data
                      'n_splits': 5,  # number of splits in the cross validation
                      'n_random_reruns': 5,
-                     'cuda': False,  # It looks like cuda is slower than CPU for me so I enforce using the CPU
+                     'cuda': True,  # It looks like cuda is slower than CPU for me so I enforce using the CPU
                      'benign_prop': 0.0787,
                      # Desired proportion of benign data in the train/validation sets (or None to keep the natural proportions)
                      'samples_per_device': 100_000}  # Total number of datapoints (train & val + unused + test) for each device.
